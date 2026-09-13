@@ -121,7 +121,7 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 40%;">Figure Reference</th>
+                <th style="width: 45%;">Figure Reference</th>
                 <th>Interactive Visualization Link</th>
             </tr>
         </thead>
@@ -161,13 +161,13 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 40%;">Figure Reference</th>
+                <th style="width: 45%;">Figure Reference</th>
                 <th>Interactive Visualization Link</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Figure: 10-Point Inert Zones (Above & Below)</td>
+                <td>Figure: 10-Point Inert Zones (Above &amp; Below)</td>
                 <td><a href="https://inert10pts001.netlify.app/" target="_blank">View Model</a></td>
             </tr>
             <tr>
