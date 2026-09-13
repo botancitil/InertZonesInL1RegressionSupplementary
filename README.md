@@ -11,41 +11,41 @@ The interactive models allow inspecting 2D and 3D simplex projections, cross-sec
 
 ## Interactive Visualizations
 
-### Burned Patient Dataset
+### Burned Patient Dataset ($m=4$)
 
 | Figure Reference | Description | Interactive Link |
 | :--- | :--- | :--- |
-| **Figure \ref{fig:BurnedPatientData+1AboveSimplexes}** | Burned Patient Data (+1 Above Simplexes) | [View Model](https://220724burnedpatientdataabovesimplexes.netlify.app/) |
-| **Figure \ref{fig:BurnedPatientDataAboveSimplexes}** | Burned Patient Data (Above Simplexes) | [View Model](https://220724burnedpatientdata-1belowsimplexes.netlify.app/) |
-| **Figure \ref{fig:BurnedPatientData-1AboveSimplexes}** | Burned Patient Data (-1 Above Simplexes) | [View Model](https://220724burnedpatientdataplus1abovesimplexes.netlify.app/) |
-| **Figure \ref{fig:BurnedPatientData-2AboveSimplexes}** | Burned Patient Data (-2 Above Simplexes) | [View Model](https://220724burnedpatientdata-1abovesimplexes.netlify.app/) |
-| **Figure \ref{fig:BurnedPatientData-1BelowSimplexes}** | Burned Patient Data (-1 Below Simplexes) | [View Model](https://220724burnedpatientdata-2abovesimplexes.netlify.app/) |
-| **Figure \ref{fig:BurnedPatientData-2AboveInertZoneCrossSection}** | Burned Patient Data (-2 Above Inert Zone Cross-Section) | [View Model](https://220812burnedpatientdata-2aboveinertzo.netlify.app/) |
-| **Figure \ref{fig:BurnedPatientData-1InertZoneCrossSection}** | Burned Patient Data (-1 Below Inert Zone Cross-Section) | [View Model](https://220812burnedpatientdata-1belowinertzo.netlify.app/) |
+| **Figure 1a** | Upper simplex pair ($\Delta=3$); interior simplex collapses to a point | [View Figure](https://220724burnedpatientdataabovesimplexes.netlify.app/) |
+| **Figure 1b** | Upper simplex pair ($\Delta=2$); interior simplex fully contained | [View Figure](https://220724burnedpatientdata-1belowsimplexes.netlify.app/) |
+| **Figure 1c** | Upper simplex pair ($\Delta=1$); extreme points touch exterior facets | [View Figure](https://220724burnedpatientdataplus1abovesimplexes.netlify.app/) |
+| **Figure 1d** | Upper simplex pair ($\Delta=0$); truncated simplex intersection | [View Figure](https://220724burnedpatientdata-1abovesimplexes.netlify.app/) |
+| **Figure 1e** | Lower simplex pair ($\Delta=1$); 3D orthoplex intersection | [View Figure](https://220724burnedpatientdata-2abovesimplexes.netlify.app/) |
+| **Figure 1f** | Cross section of upper inert zone ($\Delta=0$) in isolation (truncated simplex) | [View Figure](https://220812burnedpatientdata-2aboveinertzo.netlify.app/) |
+| **Figure 1g** | Cross section of lower inert zone ($\Delta=1$) in isolation (3D orthoplex / octahedron) | [View Figure](https://220812burnedpatientdata-1belowinertzo.netlify.app/) |
 
-### Synthetic / 10-Point Dataset
+### Numerical Example / `DataSet_1` ($m=3, n=10, \Delta=1$)
 
 | Figure Reference | Description | Interactive Link |
 | :--- | :--- | :--- |
-| **Figure \ref{fig:DataSet_1_InertZonesAboveAndBelow}** | 10-Point Inert Zones (Above and Below) | [View Model](https://inert10pts001.netlify.app/) |
-| **Figure \ref{fig:DataSet_1_SimplexesAbove}** | 10-Point Simplexes (Above) | [View Model](https://inert10pts001simplexesabove.netlify.app/) |
-| **Figure \ref{fig:DataSet_1_SimplexesBelow}** | 10-Point Simplexes (Below) | [View Model](https://inert10pts001simplexesbelow.netlify.app/) |
-| **Figure \ref{fig:DataSet_1_InertZonesAbove_2D}** | 10-Point Inert Zones (Above, 2D Cross-Section) | [View Model](https://inert10pts0012dabove.netlify.app/) |
-| **Figure \ref{fig:DataSet_1_InertZonesBelow_2D}** | 10-Point Inert Zones (Below, 2D Cross-Section) | [View Model](https://inert10pts0012dbelow.netlify.app/) |
+| **Figure 2** | Upper (green) and lower (magenta) inert zones as 3D unbounded prisms | [View Figure](https://inert10pts001.netlify.app/) |
+| **Figure 3a** | Upper simplex pair and shared barycenter cross sections | [View Figure](https://inert10pts001simplexesabove.netlify.app/) |
+| **Figure 3b** | Lower simplex pair and shared barycenter cross sections | [View Figure](https://inert10pts001simplexesbelow.netlify.app/) |
+| **Figure 3c** | 2D triangular cross section of upper inert zone on $X_1, X_2$ subspace | [View Figure](https://inert10pts0012dabove.netlify.app/) |
+| **Figure 3d** | 2D hexagonal cross section (orthoplex) of lower inert zone on $X_1, X_2$ subspace | [View Figure](https://inert10pts0012dbelow.netlify.app/) |
 
 ---
 
-## Repository Structure and Setup
+## Computational Implementation and Setup
 
-### Prerequisites
+Geometric computations for inert zones, convex hulls, halfspace intersections, and interactive vector graphics are implemented in Python.
 
-The computations and visualizations are implemented in Python using the following core scientific packages:
+### Dependencies
 
-* `numpy` (vector arithmetic and coordinate transformations)
-* `scipy` (halfspace intersection, convex hulls, and linear programs)
-* `plotly` (interactive HTML 2D/3D visualizations)
+* `numpy`
+* `scipy`
+* `plotly`
 
-Install all requirements via `pip`:
+Install required packages:
 
 ```bash
 pip install numpy scipy plotly
