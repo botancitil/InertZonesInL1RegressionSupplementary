@@ -1,18 +1,22 @@
-<!-- Gemini 09/13/26 -->
+<!-- Gemini 09/17/26 -->
 # Supplementary Material: Inert Zones in L1 Regression
 
 **Authors:** Botan Çıtıl and José H. Dulá
 
 This repository contains computational scripts, empirical and synthetic data suites, and interactive visualization models accompanying the paper *Inert Zones in L1 Regression*.
 
-The interactive models allow inspecting 2D and 3D simplex projections, cross-sections, and barycenters in detail directly within the browser.
+A clean, web-based portal hosting the interactive models and dataset directories is deployed via GitHub Pages:
+* **[Central Directory Hub](https://botancitil.github.io/InertZonesInL1RegressionSupplementary/)**
+* **[Interactive Figures Portal](https://botancitil.github.io/InertZonesInL1RegressionSupplementary/figures.html)**
+* **[Datasets & Suites Directory](https://botancitil.github.io/InertZonesInL1RegressionSupplementary/datasets.html)**
+* **[Computational Implementation Details](https://botancitil.github.io/InertZonesInL1RegressionSupplementary/code.html)**
 
 ---
 
 ## Interactive Visualizations
 
 ### Burned Patient Dataset ($m=4$)
-Empirical data source: [`RealDataSets`](https://github.com/botancitil/RealDataSets)
+Empirical data source: [`data/BurnPatientsDataFolder`](data/BurnPatientsDataFolder)
 
 | Figure Reference | Description | Interactive Link |
 | :--- | :--- | :--- |
@@ -38,22 +42,23 @@ Empirical data source: [`RealDataSets`](https://github.com/botancitil/RealDataSe
 
 ## Datasets and Data Suites
 
-* **[Burned Patient Dataset (`RealDataSets`)](https://github.com/botancitil/RealDataSets):** Contains the empirical dataset used to generate the 3D simplex pair intersections and cross-sections shown in Figure 1.
+* **[Burned Patient Dataset (`data/BurnPatientsDataFolder`)](data/BurnPatientsDataFolder):** Contains the empirical dataset used to generate the 3D simplex pair intersections and cross-sections shown in Figure 1.
 * **[Synthetic Data Suites (`SyntheticDataSuites`)](https://github.com/botancitil/SyntheticDataSuites):** Contains the 1,200 generated benchmark suites across dimensions $m \in \{5, 10, 15, 20\}$, cardinalities $n \in \{512, 1024, 2048, 4096, 8192\}$, and five continuous distributions (Laplace, Normal, Cauchy, Uniform, Triangular) utilized for empirical volume estimation and dynamic streaming time-reduction experiments.
 
 ---
 
 ## Computational Implementation and Setup
 
-Geometric computations for inert zones, convex hulls, halfspace intersections, and interactive vector graphics are implemented in Python.
+Geometric derivations for the inert zones, convex hulls, halfspace intersections via Qhull, and interactive vector graphics are implemented in Python.
 
 ### Dependencies
 
-* `numpy`
-* `scipy`
-* `plotly`
+* `numpy` (matrix inversions and vector operations)
+* `scipy` (halfspace intersections and convex hulls)
+* `pyomo` (Wagner linear program formulation)
+* `plotly` (interactive HTML 2D and 3D visual figures)
 
 Install required packages:
 
 ```bash
-pip install numpy scipy plotly
+pip install numpy scipy pyomo plotly
