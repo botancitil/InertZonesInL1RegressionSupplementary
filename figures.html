@@ -1,0 +1,243 @@
+<!-- Gemini 09/17/26 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inert Zones in L1 Regression - Interactive Figures</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #2563eb;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        nav {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        nav a {
+            margin-right: 1.25rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        nav span {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-right: 1.25rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .authors {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.25rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html">&larr; Directory Hub</a>
+        <span>Interactive Figures</span>
+        <a href="datasets.html">Datasets &amp; Suites</a>
+        <a href="code.html">Code Implementation</a>
+        <a href="https://github.com/botancitil/InertZonesInL1RegressionSupplementary" target="_blank">GitHub Repo</a>
+    </nav>
+
+    <header>
+        <h1>Interactive Visualizations: Inert Zones in L1 Regression</h1>
+        <div class="authors">Botan Çıtıl and José H. Dulá</div>
+        <p class="description">
+            This page provides direct links to the interactive web-based 3D and 2D models. Each link allows you to inspect, pan, and rotate the simplex pairs and cross-sectional polytopes directly in your browser.
+        </p>
+    </header>
+
+    <h2>Burned Patient Dataset Figures (m = 4)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Figure Reference</th>
+                <th style="width: 55%;">Description</th>
+                <th style="width: 20%;">Interactive Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Figure 1a</strong></td>
+                <td>Upper simplex pair (&Delta; = 3); interior simplex collapses to a point</td>
+                <td><a href="https://220724burnedpatientdataabovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1b</strong></td>
+                <td>Upper simplex pair (&Delta; = 2); interior simplex fully contained</td>
+                <td><a href="https://220724burnedpatientdata-1belowsimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1c</strong></td>
+                <td>Upper simplex pair (&Delta; = 1); extreme points touch exterior facets</td>
+                <td><a href="https://220724burnedpatientdataplus1abovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1d</strong></td>
+                <td>Upper simplex pair (&Delta; = 0); truncated simplex intersection</td>
+                <td><a href="https://220724burnedpatientdata-1abovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1e</strong></td>
+                <td>Lower simplex pair (&Delta; = 1); 3D orthoplex intersection</td>
+                <td><a href="https://220724burnedpatientdata-2abovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1f</strong></td>
+                <td>Cross section of upper inert zone (&Delta; = 0) in isolation</td>
+                <td><a href="https://220812burnedpatientdata-2aboveinertzo.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1g</strong></td>
+                <td>Cross section of lower inert zone (&Delta; = 1) in isolation (octahedron)</td>
+                <td><a href="https://220812burnedpatientdata-1belowinertzo.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Numerical Example / DataSet_1 (m = 3, n = 10, &Delta; = 1)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Figure Reference</th>
+                <th style="width: 55%;">Description</th>
+                <th style="width: 20%;">Interactive Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Figure 2</strong></td>
+                <td>Upper (green) and lower (magenta) inert zones as 3D unbounded prisms</td>
+                <td><a href="https://inert10pts001.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3a</strong></td>
+                <td>Upper simplex pair and shared barycenter cross sections</td>
+                <td><a href="https://inert10pts001simplexesabove.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3b</strong></td>
+                <td>Lower simplex pair and shared barycenter cross sections</td>
+                <td><a href="https://inert10pts001simplexesbelow.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3c</strong></td>
+                <td>2D triangular cross section of upper inert zone on X1, X2 subspace</td>
+                <td><a href="https://inert10pts0012dabove.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3d</strong></td>
+                <td>2D hexagonal cross section (orthoplex) of lower inert zone</td>
+                <td><a href="https://inert10pts0012dbelow.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>
+        Main repository: <a href="https://github.com/botancitil/InertZonesInL1RegressionSupplementary">InertZonesInL1RegressionSupplementary</a>
+    </footer>
+</div>
+
+</body>
+</html>
