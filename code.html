@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inert Zones in L1 Regression - Code Implementation</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #2563eb;
+            --border: #e2e8f0;
+            --code-bg: #0f172a;
+            --code-text: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        nav {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        nav a {
+            margin-right: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        nav span {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-right: 1.5rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .authors {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.25rem;
+        }
+
+        p, li {
+            font-size: 0.95rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <a href="index.html">&larr; Interactive Figures</a>
+        <a href="datasets.html">Datasets &amp; Suites</a>
+        <span>Code Implementation</span>
+        <a href="https://github.com/botancitil/InertZonesInL1RegressionSupplementary" target="_blank">GitHub Repo</a>
+    </nav>
+
+    <header>
+        <h1>Computational Implementation: Inert Zones in L1 Regression</h1>
+        <div class="authors">Botan Çıtıl and José H. Dulá</div>
+        <p class="description">
+            This page outlines the computational architecture, mathematical formulations, and Python routines used for calculating inert zones, performing facial decomposition via Qhull/SciPy, and running accelerated online L1 regression.
+        </p>
+    </header>
+
+    <h2>Required Dependencies</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Package</th>
+                <th style="width: 45%;">Role in Methodology</th>
+                <th style="width: 30%;">Installation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>NumPy</strong></td>
+                <td>Basis matrix manipulation and dual variable updates.</td>
+                <td><code>pip install numpy</code></td>
+            </tr>
+            <tr>
+                <td><strong>SciPy</strong></td>
+                <td>Halfspace intersection (Qhull interface) for polytope vertices.</td>
+                <td><code>pip install scipy</code></td>
+            </tr>
+            <tr>
+                <td><strong>Pyomo &amp; GLPK</strong></td>
+                <td>Wagner LP formulation and primal/dual baseline solutions.</td>
+                <td><code>pip install pyomo</code></td>
+            </tr>
+            <tr>
+                <td><strong>Plotly</strong></td>
+                <td>Interactive 2D vector plots and 3D polytope meshes.</td>
+                <td><code>pip install plotly</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>1. Online Inertness Condition Test</h2>
+    <p>
+        Upon observing an arrival \((\hat{\mathbf{x}}, \hat{y})\), testing whether the current optimal regression parameters \(\beta^*\) remain unchanged requires evaluating the updated dual vector \(\hat{u}_F\). Recalculating the LP is avoided whenever \(-1 \leq \hat{u}_F \leq 1\):
+    </p>
+
+    <pre><code># Gemini 09/17/26
+import numpy as np
+
+def is_arrival_inert(u_F_star, X1_inv, beta, x_hat, y_hat):
+    """
+    Tests if an arrival (x_hat, y_hat) is inert under current basis parameters.
+    """
+    # 1. Determine orientation relative to current hyperplane
+    y_pred = beta[0] + np.dot(x_hat, beta[1:])
+    if y_hat > y_pred:
+        I_diag = 1.0   # Above
+    else:
+        I_diag = -1.0  # Below
+
+    # 2. Update fitted duals: u_hat_F = u_F_star - I_diag * (1, x_hat) @ X1_inv
+    augmented_x = np.concatenate(([1.0], x_hat))
+    delta_u = I_diag * np.dot(augmented_x, X1_inv)
+    u_hat_F = u_F_star - delta_u
+
+    # 3. Check dual feasibility [-1, 1]
+    inert = np.all(u_hat_F >= -1.0 - 1e-9) and np.all(u_hat_F <= 1.0 + 1e-9)
+    return inert, u_hat_F</code></pre>
+
+    <h2>2. Polyhedral Facial Decomposition (SciPy & Qhull)</h2>
+    <p>
+        To reconstruct the cross-sectional polytopes of the inert zones from the inequality systems \(A x \le b\), the bounded polyhedron is converted from its external halfspace representation to its internal vertex representation using <code>scipy.spatial.HalfspaceIntersection</code>:
+    </p>
+
+    <pre><code># Gemini 09/17/26
+import numpy as np
+from scipy.spatial import HalfspaceIntersection, ConvexHull
+
+def compute_inert_cross_section(halfspaces, interior_point):
+    """
+    halfspaces: Array of shape (M, d + 1) in the form [A, -b] for Ax <= b
+    interior_point: Known feasible point (e.g., barycenter of the simplex)
+    """
+    hs = HalfspaceIntersection(halfspaces, interior_point)
+    vertices = hs.intersections
+
+    # Derive facet incidence using ConvexHull on the computed vertices
+    hull = ConvexHull(vertices)
+    return vertices, hull.simplices</code></pre>
+
+    <footer>
+        Main repository: <a href="https://github.com/botancitil/InertZonesInL1RegressionSupplementary">InertZonesInL1RegressionSupplementary</a>
+    </footer>
+</div>
+
+</body>
+</html>
