@@ -1,59 +1,212 @@
 <!-- Gemini 09/13/26 -->
-# Supplementary Material: Inert Zones in L1 Regression
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inert Zones in L1 Regression - Interactive Figures</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #2563eb;
+            --border: #e2e8f0;
+        }
 
-**Authors:** Botan Çıtıl and José H. Dulá
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem 1rem;
+        }
 
-This repository contains computational scripts, empirical and synthetic data suites, and interactive visualization models accompanying the paper *Inert Zones in L1 Regression*.
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
 
-The interactive models allow inspecting 2D and 3D simplex projections, cross-sections, and barycenters in detail directly within the browser.
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
 
----
+        h1 {
+            font-size: 1.75rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
 
-## Interactive Visualizations
+        .authors {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
 
-### Burned Patient Dataset ($m=4$)
-Empirical data source: [`RealDataSets`](https://github.com/botancitil/RealDataSets)
+        .description {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
 
-| Figure Reference | Description | Interactive Link |
-| :--- | :--- | :--- |
-| **Figure 1a** | Upper simplex pair ($\Delta=3$); interior simplex collapses to a point | [View Figure](https://220724burnedpatientdataabovesimplexes.netlify.app/) |
-| **Figure 1b** | Upper simplex pair ($\Delta=2$); interior simplex fully contained | [View Figure](https://220724burnedpatientdata-1belowsimplexes.netlify.app/) |
-| **Figure 1c** | Upper simplex pair ($\Delta=1$); extreme points touch exterior facets | [View Figure](https://220724burnedpatientdataplus1abovesimplexes.netlify.app/) |
-| **Figure 1d** | Upper simplex pair ($\Delta=0$); truncated simplex intersection | [View Figure](https://220724burnedpatientdata-1abovesimplexes.netlify.app/) |
-| **Figure 1e** | Lower simplex pair ($\Delta=1$); 3D orthoplex intersection | [View Figure](https://220724burnedpatientdata-2abovesimplexes.netlify.app/) |
-| **Figure 1f** | Cross section of upper inert zone ($\Delta=0$) in isolation (truncated simplex) | [View Figure](https://220812burnedpatientdata-2aboveinertzo.netlify.app/) |
-| **Figure 1g** | Cross section of lower inert zone ($\Delta=1$) in isolation (3D orthoplex / octahedron) | [View Figure](https://220812burnedpatientdata-1belowinertzo.netlify.app/) |
+        h2 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.25rem;
+        }
 
-### Numerical Example / `DataSet_1` ($m=3, n=10, \Delta=1$)
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
 
-| Figure Reference | Description | Interactive Link |
-| :--- | :--- | :--- |
-| **Figure 2** | Upper (green) and lower (magenta) inert zones as 3D unbounded prisms | [View Figure](https://inert10pts001.netlify.app/) |
-| **Figure 3a** | Upper simplex pair and shared barycenter cross sections | [View Figure](https://inert10pts001simplexesabove.netlify.app/) |
-| **Figure 3b** | Lower simplex pair and shared barycenter cross sections | [View Figure](https://inert10pts001simplexesbelow.netlify.app/) |
-| **Figure 3c** | 2D triangular cross section of upper inert zone on $X_1, X_2$ subspace | [View Figure](https://inert10pts0012dabove.netlify.app/) |
-| **Figure 3d** | 2D hexagonal cross section (orthoplex) of lower inert zone on $X_1, X_2$ subspace | [View Figure](https://inert10pts0012dbelow.netlify.app/) |
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
 
----
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
 
-## Datasets and Data Suites
+        tr:last-child td {
+            border-bottom: none;
+        }
 
-* **[Burned Patient Dataset (`RealDataSets`)](https://github.com/botancitil/RealDataSets):** Contains the empirical dataset used to generate the 3D simplex pair intersections and cross-sections shown in Figure 1.
-* **[Synthetic Data Suites (`SyntheticDataSuites`)](https://github.com/botancitil/SyntheticDataSuites):** Contains the 1,200 generated benchmark suites across dimensions $m \in \{5, 10, 15, 20\}$, cardinalities $n \in \{512, 1024, 2048, 4096, 8192\}$, and five continuous distributions (Laplace, Normal, Cauchy, Uniform, Triangular) utilized for empirical volume estimation and dynamic streaming time-reduction experiments.
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            word-break: break-all;
+        }
 
----
+        a:hover {
+            text-decoration: underline;
+        }
 
-## Computational Implementation and Setup
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
 
-Geometric computations for inert zones, convex hulls, halfspace intersections, and interactive vector graphics are implemented in Python.
+<div class="container">
+    <header>
+        <h1>Supplementary Visualizations: Inert Zones in L1 Regression</h1>
+        <div class="authors">Botan Çıtıl and José H. Dulá</div>
+        <p class="description">
+            This page provides direct access to the interactive 3D and 2D models accompanying the paper. 
+            Click any link below to interactively explore the simplex intersections and cross-sections.
+        </p>
+    </header>
 
-### Dependencies
+    <h2>Burned Patient Dataset Figures (m = 4)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Figure Reference</th>
+                <th style="width: 55%;">Description</th>
+                <th style="width: 20%;">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Figure 1a</strong></td>
+                <td>Upper simplex pair (&Delta; = 3); interior simplex collapses to a point</td>
+                <td><a href="https://220724burnedpatientdataabovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1b</strong></td>
+                <td>Upper simplex pair (&Delta; = 2); interior simplex fully contained</td>
+                <td><a href="https://220724burnedpatientdata-1belowsimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1c</strong></td>
+                <td>Upper simplex pair (&Delta; = 1); extreme points touch exterior facets</td>
+                <td><a href="https://220724burnedpatientdataplus1abovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1d</strong></td>
+                <td>Upper simplex pair (&Delta; = 0); truncated simplex intersection</td>
+                <td><a href="https://220724burnedpatientdata-1abovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1e</strong></td>
+                <td>Lower simplex pair (&Delta; = 1); 3D orthoplex intersection</td>
+                <td><a href="https://220724burnedpatientdata-2abovesimplexes.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1f</strong></td>
+                <td>Cross section of upper inert zone (&Delta; = 0) in isolation</td>
+                <td><a href="https://220812burnedpatientdata-2aboveinertzo.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 1g</strong></td>
+                <td>Cross section of lower inert zone (&Delta; = 1) in isolation (octahedron)</td>
+                <td><a href="https://220812burnedpatientdata-1belowinertzo.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+        </tbody>
+    </table>
 
-* `numpy`
-* `scipy`
-* `plotly`
+    <h2>Numerical Example / DataSet_1 (m = 3, n = 10, &Delta; = 1)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Figure Reference</th>
+                <th style="width: 55%;">Description</th>
+                <th style="width: 20%;">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Figure 2</strong></td>
+                <td>Upper (green) and lower (magenta) inert zones as 3D unbounded prisms</td>
+                <td><a href="https://inert10pts001.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3a</strong></td>
+                <td>Upper simplex pair and shared barycenter cross sections</td>
+                <td><a href="https://inert10pts001simplexesabove.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3b</strong></td>
+                <td>Lower simplex pair and shared barycenter cross sections</td>
+                <td><a href="https://inert10pts001simplexesbelow.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3c</strong></td>
+                <td>2D triangular cross section of upper inert zone on X1, X2 subspace</td>
+                <td><a href="https://inert10pts0012dabove.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+            <tr>
+                <td><strong>Figure 3d</strong></td>
+                <td>2D hexagonal cross section (orthoplex) of lower inert zone</td>
+                <td><a href="https://inert10pts0012dbelow.netlify.app/" target="_blank">View Figure</a></td>
+            </tr>
+        </tbody>
+    </table>
 
-Install required packages:
+    <footer>
+        Main repository: <a href="https://github.com/botancitil/InertZonesInL1RegressionSupplementary">InertZonesInL1RegressionSupplementary</a>
+    </footer>
+</div>
 
-```bash
-pip install numpy scipy plotly
+</body>
+</html>
